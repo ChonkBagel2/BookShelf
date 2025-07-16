@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BookShelf </title> 
+
+    <link href="/css/styles.css" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body> 
+
+    <div class="container"> 
+        
+        <div class="left"> 
+            <p class="gothic-regular" > B </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > K </p> 
+            <p class="gothic-regular" > S </p> 
+            <p class="gothic-regular" > H </p> 
+            <p class="gothic-regular" > E </p> 
+            <p class="gothic-regular" > L </p> 
+            <p class="gothic-regular" > F </p> 
+        </div> 
+        
+        <div class="right"> 
+
+            <div class="pages"> 
+                
+                <a href="/books" class="gothic-regular" > Your Records </a>
+                <a href="/add" class="gothic-regular" > Add a record </a>
+            </div> 
+            
+            <div class="record-details"> 
+
+                <div class="record-details-left"> 
+
+                    <h1 class="rubik-bold"> 
+                        <%= locals.book.title %> 
+                    </h1> 
+
+                    <p class="rubik-300"> <%= locals.book.author %> </p> 
+
+                    <p class="star rubik-300"></p> 
+
+                    <p class="rubik-300"> <%= locals.book.notes %> </p> 
+                    
+                </div> 
+
+                <div class="record-details-right"> 
+
+                    <div class="record-details-right-image-container"> 
+                        
+                        <img src="<%= book.cover_link %>"> 
+                    </div>
+
+                    <div class="record-details-right-buttons"> 
+
+                        <form action="/patch/<%= locals.book.id %>" method="post">
+                            <input class="rubik-light" type="submit" value="Patch Record">
+                        </form> 
+        
+                        <form action="/delete/<%= locals.book.id %>" method="post">
+                            <input class="rubik-light" type="submit" value="Delete Record"> 
+                        </form> 
+
+                    </div>
+
+                </div>  
+            </div>
+        </div> 
+
+    </div> 
+
+    <script>  
+    
+    const p = document.querySelector('.star'); 
+    
+    for( var i = 0; i < parseInt( '<%= locals.book.rating %>' ); i++ ) { 
+
+        p.innerHTML += '&#x2605'; 
+    }
+
+    </script>
+
+</body>
+</html>

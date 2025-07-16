@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BookShelf </title> 
+
+    <link href="/css/styles.css" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body> 
+
+
+    <div class="container"> 
+        
+        <div class="left"> 
+            <p class="gothic-regular" > B </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > K </p> 
+            <p class="gothic-regular" > S </p> 
+            <p class="gothic-regular" > H </p> 
+            <p class="gothic-regular" > E </p> 
+            <p class="gothic-regular" > L </p> 
+            <p class="gothic-regular" > F </p> 
+        </div> 
+        
+        <div class="right"> 
+
+            <div class="pages"> 
+                
+                <a href="/books"class="gothic-regular" > Your Records </a>
+                <a href="/add" class="gothic-regular" > Add a record </a>
+            </div> 
+
+            <div class="content"> 
+
+                <div class="content-form"> 
+
+                    <% if ( !locals.update ) { %> 
+
+                        <form action="/add" method="post" class="form-add" autocomplete="off"> 
+                            <h1 class="rubik-300" > Add a record </h1> 
+                            <input name="title" class="form-field rubik-300" placeholder="Book Title" required> 
+                            <br> 
+                            <div class="form-field-row"> 
+
+                                <input name="author" class="form-field rubik-300" placeholder="Author Name" required> 
+                                <!-- render 5 stars and send their value with hidden input --> 
+                                <!-- but for now, it's a basic input box --> 
+
+                                <!-- done ( used js, will remove these comments after the next commit ) --> 
+                                <div class="form-field-row-stars"> 
+
+                                    <span class="star 1"> &#x2606 </span> 
+                                    <span class="star 2"> &#x2606 </span> 
+                                    <span class="star 3"> &#x2606 </span> 
+                                    <span class="star 4"> &#x2606 </span> 
+                                    <span class="star 5"> &#x2606 </span> 
+                                
+                                </div> 
+                                <!-- <input name="rating" type="number" min="1" max="5" class="form-field" placeholder="Rating" required>  --> 
+                                <input type="hidden" name="rating" id="hidden-rating" value="empty" > 
+                                
+                            </div>
+                            <br>
+                            <textarea name="notes" class="form-field rubik-300" required>Your Notes</textarea>
+                            <br> 
+
+                            <input id="form-submit" class="rubik-300" type="submit" value="Add Book">
+                        </form> 
+
+                    <% } else { %> 
+
+                        <form action="/update/<%= book.id %>" method="post" class="form-add" autocomplete="off"> 
+
+                            <h1 class="rubik-300" > Update a record </h1> 
+
+                            <input name="title" value="<%= book.title %>" class="form-field rubik-300" placeholder="Book Title" required> 
+                            <br> 
+
+                            <div class="form-field-row"> 
+
+                                <input name="author" value="<%= book.author %>" class="form-field rubik-300" placeholder="Author Name" required> 
+                                <!-- render 5 stars and send their value with hidden input --> 
+                                <!-- but for now, it's a basic input box --> 
+
+                                <!-- done ( used js, will remove these comments after the next commit ) --> 
+                                <div class="form-field-row-stars"> 
+
+                                    <span class="star 1"> &#x2606 </span> 
+                                    <span class="star 2"> &#x2606 </span> 
+                                    <span class="star 3"> &#x2606 </span> 
+                                    <span class="star 4"> &#x2606 </span> 
+                                    <span class="star 5"> &#x2606 </span> 
+                                
+                                </div> 
+
+                                <input type="hidden" name="rating" id="hidden-rating" value="empty" > 
+
+                            </div>
+                            <br>
+                            <textarea name="notes" class="form-field rubik-300" required> <%= book.notes %> </textarea>
+                            <br> 
+
+                            <input id="form-submit" class="rubik-300" type="submit" value="Update Book"> 
+                        </form> 
+                    
+                    <% } %> 
+    
+                </div> 
+    
+                <div class="content-image"> 
+
+                    <img src="/images/add-book.jpg"> 
+                    
+                </div> 
+
+            </div> 
+
+        </div> 
+    </div> 
+
+    <script> 
+    
+    const stars = document.querySelectorAll('.star'); 
+
+    // disable the submit button until user gives a rating 
+    const submitButton = document.querySelector('#form-submit'); 
+    submitButton.disabled = true; 
+
+    // In case of patch, update the stars 
+    if ( '<%= update %>' === 'true' ) { 
+        // console.log( ' I am a fucking genius ' ); 
+        rating = parseInt( '<%= book.rating %>' ); 
+
+        for ( var i = 0; i < rating; i++ ) { 
+
+            stars[ i ].innerHTML = "&#x2605"; 
+            stars[ i ].style.color = 'coral'; 
+        } 
+
+        // because the user might not want to change rating 
+        submitButton.disabled = false; 
+    } 
+
+    stars.forEach( ( star ) => { 
+        star.addEventListener( 'click', () => { 
+
+            submitButton.disabled = false;
+
+            stars.forEach( ( star ) => { 
+                star.innerHTML = "&#x2606"; 
+            } )
+
+            const starNumber = star.classList[ 1 ]; 
+
+            console.log( starNumber ) 
+
+            document.getElementById('hidden-rating').value = starNumber; 
+
+            for( var i = 0; i < starNumber; i++ ) { 
+
+                stars[ i ].innerHTML = "&#x2605"; 
+                stars[ i ].style.color = 'coral'; 
+
+            }
+
+        } )
+    }) 
+
+    // I have straight up created magic with this Javascript code // 
+    </script> 
+
+</body>
+</html>

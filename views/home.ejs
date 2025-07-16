@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BookShelf </title> 
+
+    <link href="/css/styles.css" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body> 
+
+    <div class="container"> 
+        
+        <div class="left"> 
+            <p class="gothic-regular" > B </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > O </p> 
+            <p class="gothic-regular" > K </p> 
+            <p class="gothic-regular" > S </p> 
+            <p class="gothic-regular" > H </p> 
+            <p class="gothic-regular" > E </p> 
+            <p class="gothic-regular" > L </p> 
+            <p class="gothic-regular" > F </p> 
+        </div> 
+        
+        <div class="right"> 
+
+            <div class="pages"> 
+                
+                <a href="/books" class="gothic-regular" > Your Records </a>
+                <a href="/add" class="gothic-regular" > Add a record </a>
+            </div>
+
+            <div class="records"> 
+                
+                <% if ( locals.books ) { %>
+
+                    <% books.forEach( function ( book ) { %> 
+
+                        <div class="record-item"> 
+
+                            <a href="/book/<%= book.id %>"> 
+
+                                <img src="<%= book.cover_link %>"> 
+
+                                <div class="record-item-a-content"> 
+
+                                    <p class="title rubik-300" > <%= book.title %> </p> 
+
+                                    <input type="hidden" class="rating-input" value="<%= book.rating %>"> 
+
+                                    <input type="hidden" class="note-input" value="<%= book.notes %>"> 
+
+                                    <p class="rating"> </p> 
+
+                                    <p class="notes rubik-300"> </p> 
+
+                                </div>
+
+                            </a> 
+
+                        </div>
+
+                    <% }) %> 
+
+                <% } else { %> 
+
+                    <p class="rubik-300"> Oops, looks like you haven't added any records yet </p> 
+                    
+                <% } %> 
+
+            </div>
+
+        </div> 
+    </div> 
+
+    <script> 
+
+    const recordItem = document.querySelectorAll('.record-item'); 
+
+    recordItem.forEach( ( record ) => { 
+        // Find the input 
+        const rating = parseInt( record.querySelector('.rating-input').value ); 
+        var notes = record.querySelector('.note-input').value; 
+        notes = notes.substring( 0, 40) + '...'; 
+
+        record.querySelector('.rating').innerHTML += '&#x2605'.repeat( rating ); 
+        record.querySelector('.notes').innerHTML = notes; 
+    })
+
+    </script> 
+</body>
+</html>
