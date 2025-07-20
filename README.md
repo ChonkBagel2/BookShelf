@@ -23,7 +23,7 @@ The online shelf to organize, show and share all the lovely things for the books
 
 1) Clone this repo
 2) Set up a postgres database and add it to env variables 
-3) run the following commands
+3) Run the following commands
 4) ```
    npm install
    nodemon index.js
