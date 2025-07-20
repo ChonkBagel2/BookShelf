@@ -1,0 +1,295 @@
+/* Fonts */ 
+
+.rubik-300 { 
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal; 
+    color: brown;
+} 
+
+.rubik-light { 
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: italic; 
+    color: brown; 
+} 
+
+.rubik-bold { 
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal; 
+    color: brown; 
+} 
+
+.gothic-regular {
+    font-family: "LXGW Marker Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Styles */ 
+
+body { 
+    margin: 0px; 
+}
+
+.container {
+    display: flex; 
+    height: 100vh; 
+}
+
+.left { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;  
+    flex: 5;
+    background-color: antiquewhite; 
+    font-size: 32px; 
+    color: brown;
+}
+
+.left > p {
+    margin: 0px; 
+}
+
+.right { 
+    flex: 95; 
+    background-color: wheat; 
+} 
+
+.pages { 
+    margin-top: 20px; 
+    margin-left: 40px; 
+}
+
+.pages > a { 
+    margin-left: 20px; 
+    color: brown;
+    text-decoration: none; 
+}
+
+.pages > a:first-of-type {
+    margin-left: 0px; 
+} 
+
+.records { 
+    margin: 40px;  
+    height: 80vh; 
+    overflow-y: auto; 
+} 
+
+.records > p { 
+    margin: 0px;
+    margin-top: 40px;
+    font-size: 26px;
+    color: purple;
+}
+
+.record-item { 
+    box-sizing: border-box; 
+    border: solid 5px lightcoral;
+    height: 200px;
+    border-style: groove; 
+    display: flex; 
+    padding: 10px; 
+} 
+
+.record-item > a { 
+    display: flex; 
+    flex: 1; 
+    text-decoration: none; 
+} 
+
+.record-item > a > img { 
+    width: 15%; 
+    margin-right: 20px; 
+} 
+
+.record-item-a-content { 
+    display: flex; 
+    flex-direction: column; 
+    flex: 1; 
+} 
+
+.record-item-a-content > p { 
+    margin: 0px; 
+    margin-top: 10px; 
+} 
+
+.record-item-a-content > .title { 
+    font-size: 32px; 
+}
+
+.record-item-a-content > .rating { 
+    font-size: 28px; 
+    color: coral; 
+}
+
+.record-item-a-content > .notes { 
+    margin-top: 20px; 
+    font-size: 20px; 
+}
+
+
+
+/* form page */ 
+
+.content { 
+    display: flex; 
+    margin: 40px; 
+    justify-content: space-between; 
+    height: 80vh; 
+}
+
+.content-form { 
+    flex: 2;
+    box-sizing: border-box; 
+    border: solid 2px brown; 
+    margin-right: 20px; 
+    display: flex; 
+} 
+
+.content-image { 
+    flex: 1; 
+    width: 200px; 
+} 
+
+.content-image > img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+} 
+
+.form-add { 
+    display: flex; 
+    flex-direction: column; 
+    flex: 1; 
+    padding: 20px; 
+} 
+
+.form-add > h1 { 
+    margin: 0px; 
+    font-size: 42px; 
+    margin-bottom: 40px; 
+} 
+
+.form-add > .form-field { 
+    flex: 1; 
+    font-size: 28px;
+}
+
+.form-add > input:first-of-type {
+    flex: 0.5; 
+} 
+
+.form-add > input:last-of-type { 
+    flex: 1; 
+    font-size: 28px; 
+} 
+
+.form-field-row { 
+    display: flex; 
+    justify-content: space-between; 
+} 
+
+.form-field-row-stars { 
+    margin-right: 20px; 
+    font-size: 32px; 
+    color: coral; 
+    cursor: pointer; 
+}
+
+
+/* details page */ 
+
+.record-details { 
+    margin: 40px; 
+    display: flex; 
+    justify-content: space-between; 
+    height: 80vh;
+} 
+
+.record-details-left { 
+    flex: 2; 
+} 
+
+.record-details-right { 
+    flex: 1; 
+}
+
+.record-details-right-image-container { 
+    height: 60vh; 
+    border: solid 5px coral; 
+    border-style: groove; 
+    box-sizing: border-box; 
+    padding: 5px; 
+} 
+
+.record-details-right-image-container > img { 
+    height: 100%; 
+    width: 100%; 
+    object-fit: cover; 
+} 
+
+.record-details-right-buttons { 
+    height: 20vh; 
+    display: flex; 
+    flex-direction: column; 
+    box-sizing: border-box; 
+    padding-bottom: 20px; 
+} 
+
+.record-details-right-buttons > form { 
+    flex: 1; 
+    display: flex; 
+    box-sizing: border-box; 
+} 
+
+.record-details-right-buttons > form > input { 
+    flex: 1; 
+    border: solid 5px coral; 
+    border-style: groove; 
+    box-sizing: border-box; 
+    font-size: 20px; 
+    background-color: transparent; 
+    cursor: pointer; 
+} 
+
+.record-details-left > h1 { 
+    margin: 0px; 
+    margin-top: 20px;
+    font-size: 42px;
+} 
+
+.record-details-left > p { 
+    margin: 0px; 
+    margin-top: 20px; 
+    font-size: 20px; 
+} 
+
+.record-details-left > .star { 
+    font-size: 30px; 
+    color: coral; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
